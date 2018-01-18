@@ -24,11 +24,15 @@ The complete code for this guide is included in this repository.
 
 In part one we'll set up the UI that we can drop Smooch into in part two.
 
-#### 1. Create a new project
+### 1. Create a new project
 Create a new single view app project ![single view app](images/single_view_app.png) and pick Swift as the language.
 
 ### 2. Add UI elements
-In the _Main.storyboard_ file add a Text Field ![text field](images/text_field_element.png) and a Table View ![table view](images/table_view_element.png). The Text Field will be our message input. The Table View will contain the conversation history.
+In the _Main.storyboard_ file add a Text Field and a Table View. The Text Field will be our message input. The Table View will contain the conversation history.
+
+![text field](images/text_field_element.png)
+
+![table view](images/table_view_element.png)
 
 ### 3. Connect UI elements to the view controller
 Using the assistant editor, ctrl drag both UI elements from _Main.storyboard_ into _ViewController.swift_ to connect them to referencing outlets.
