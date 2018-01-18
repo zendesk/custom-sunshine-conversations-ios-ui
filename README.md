@@ -112,7 +112,7 @@ override func viewDidLoad() {
 
 ---
 
-That concludes the first part of this guide, at this point your _ViewController.swift_ file should look like this:
+That concludes the first part of this guide. At this point your _ViewController.swift_ file should look like this:
 
 ```swift
 import UIKit
