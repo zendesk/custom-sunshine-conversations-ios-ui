@@ -33,7 +33,7 @@ In the _Main.storyboard_ file add a Text Field ![text field](images/text_field_e
 ### 3. Connect UI elements to the view controller
 Using the assistant editor, ctrl drag both UI elements from _Main.storyboard_ into _ViewController.swift_ to connect them to referencing outlets.
 
-Name the Text View _messageInput_ ![Text View referencing outlet](images/text_field_outlet.png) and the Table View _conversationHistory_ ![Table View referencing outlet](images/table_view_outlet.png).
+Name the Text View _messageInput_  and the Table View _conversationHistory_.
 
 Your _ViewController.swift_ file should now look something like this:
 
@@ -161,13 +161,13 @@ And your _Main.storyboard_ should look something like this:
 ## Part Two: adding messaging to the app
 Now that we've defined the UI for our messaging application, we can call Smooch's core messaging methods to add functionality.
 
-### 1. Integrating Smooch
+### 1. Integrate Smooch
 
-See this [guide](https://docs.smooch.io/guide/native-ios-sdk/) for adding the Smooch framework to your app, but here's a quick start. We'll assume you have [Cocoapods](https://cocoapods.org/). In the terminal:
-- Run `pod init`
-- Add `pod 'Smooch'` to the _Podfile_
-- Run `pod install`
-- Follow the instructions in the terminal for re-opening the project in Xcode
+See this [guide](https://docs.smooch.io/guide/native-ios-sdk/) for adding the Smooch framework to your app. We've included a quick start here. We'll assume you have [Cocoapods](https://cocoapods.org/). In the terminal:
+- run `pod init`
+- add `pod 'Smooch'` to the _Podfile_
+- run `pod install`
+- follow the instructions in the terminal for re-opening the project in Xcode.
 
 Now in _AppDelegate.swift_ AND _ViewController.swift_, import Smooch:
 
@@ -303,6 +303,8 @@ Now you might want to consider how you'll represent more complex messages and ac
 You can also follow [these instructions](https://docs.smooch.io/guide/native-ios-sdk/#step-5-repeat-for-production-mode) for handling push notifications.
 
 ---
+
+## Running the code in this repository
 
 The complete code for this guide is included in this repository. To run the code:
 - clone the repo
