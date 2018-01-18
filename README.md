@@ -14,7 +14,7 @@ The iOS SDK can be initialized without displaying it's default UI. You can then 
 
 This guide is separated into two parts:
 - [Part One](#) for setting up a generic messaging UI in iOS
-- [Part Two](#) for dropping Smooch methods in to add the messaging functionality.
+- [Part Two](#) for integrating Smooch methods in to add the messaging functionality.
 
 It will help to have the [SDK documentation](https://docs.smooch.io/api/ios/index.html) on hand while following this guide.
 
@@ -22,10 +22,10 @@ The complete code for this guide is included in this repository.
 
 ## Part One: setting up the UI
 
-In part one we'll set up the UI that we can drop Smooch into in part two.
+In part one we'll set up the UI that we'll be integration Smooch with in part two.
 
 ### 1. Create a new project
-Create a new single view app project ![single view app](images/single_view_app.png) and pick Swift as the language.
+Create a new single view app project ![single view app](images/single_view_app.png) and select Swift as the language.
 
 ### 2. Add UI elements
 In the _Main.storyboard_ file add a Text Field and a Table View. The Text Field will be our message input. The Table View will contain the conversation history.
@@ -39,7 +39,7 @@ Using the assistant editor, ctrl drag both UI elements from _Main.storyboard_ in
 
 Name the Text View _messageInput_  and the Table View _conversationHistory_.
 
-Your _ViewController.swift_ file should now look something like this:
+Your _ViewController.swift_ file should now look like this:
 
 ```swift
 class ViewController: UIViewController {
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
 ### 4. Handle input from the Text View
 Now we're going to handle the user hitting the enter key while typing so that we can treat their input as a message.
 
-First we'll create a function called _endOfInput_ to handle the event:
+First we'll create a function called _endOfInput_ in the _ViewController_ class in _ViewController.swift_ to handle the event:
 
 ```swift
 @objc func endOfInput(){
@@ -66,7 +66,7 @@ First we'll create a function called _endOfInput_ to handle the event:
 }
 ```
 
-The _endOfInput_ function is logging the text to the console and resetting the Text View to an empty state. When we implement the Smooch pieces, this is where we'll send a message instead of logging it.
+The _endOfInput_ function is logging the text to the console and resetting the Text View to an empty state. When we implement the Smooch pieces, this is where we'll place our code to call smooch instead of logging text.
 
 In our _viewDidLoad_ method, we'll add this line to attach our _endOfInput_ function to the UI element:
 ```swift
@@ -156,7 +156,7 @@ class ViewController: UIViewController, UITableViewDataSource {
 }
 ```
 
-And your _Main.storyboard_ should look something like this:
+And your _Main.storyboard_ should look like this:
 
 ![storyboard](images/storyboard.png)
 
@@ -295,7 +295,7 @@ class ViewController: UIViewController, UITableViewDataSource, SKTConversationDe
 
 ## Wrap up
 
-You've created your own UI for the Smooch iOS SDK. It should look something like this:
+You've created your own UI for the Smooch iOS SDK. It should look like this:
 
 ![barebones UI](images/barebones_ui.png)
 
