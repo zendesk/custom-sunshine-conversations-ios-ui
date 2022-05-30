@@ -183,7 +183,7 @@ And, in _didFinishLaunchingWithOptions_ in _AppDelegate.swift_, add a line to in
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    Smooch.initWith(SKTSettings(appId: "<your_app_id>"))
+    Smooch.initWith(SKTSettings(integrationId: "YOUR_INTEGRATION_ID"))
     return true
 }
 ```
@@ -231,7 +231,7 @@ Replace the code that sets the value of the cell to `"Item"` with this:
 
 ```swift
 let message = items[indexPath.row] as! SKTMessage
-let text = message.role == "appMaker" ? "\(message.name!) says \(message.text!)" : message.text!
+let text = message.role == "business" ? "\(message.displayName!) says \(message.text!)" : message.text!
 cell.textLabel!.text = text
 ```
 
@@ -261,7 +261,8 @@ In the _viewDidLoad_ delegate method, we need to attach our _ViewController_ as 
 ```swift
 override open func viewDidLoad() {
     ...
-    Smooch.conversation()?.delegate = self
+    let delegate = self // self=the ViewController 
+    Smooch.update(delegate) 
 }
 ```
 
