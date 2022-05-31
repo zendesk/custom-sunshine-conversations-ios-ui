@@ -179,11 +179,11 @@ Now in _AppDelegate.swift_ AND _ViewController.swift_, import Smooch:
 import Smooch
 ```
 
-And, in _didFinishLaunchingWithOptions_ in _AppDelegate.swift_, add a line to initialize Smooch replacing `"<your_app_id>"` with your Smooch app ID:
+And, in _didFinishLaunchingWithOptions_ in _AppDelegate.swift_, add a line to initialize Smooch replacing `"<YOUR_INTEGRATION_ID>"` with your Smooch iOS integration ID:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    Smooch.initWith(SKTSettings(integrationId: "YOUR_INTEGRATION_ID"))
+    Smooch.initWith(SKTSettings(integrationId: "<YOUR_INTEGRATION_ID>"))
     return true
 }
 ```
@@ -231,7 +231,15 @@ Replace the code that sets the value of the cell to `"Item"` with this:
 
 ```swift
 let message = items[indexPath.row] as! SKTMessage
-let text = message.role == "business" ? "\(message.displayName!) says \(message.text!)" : message.text!
+
+var text = message.text
+              
+if message.role == "appMaker" && (message.displayName != nil) {
+    text = "\(message.displayName!) says: \(message.text!)"
+} else if message.role == "appMaker" && (message.displayName == nil){
+    text = "Business says: \(message.text!)"
+}
+
 cell.textLabel!.text = text
 ```
 
