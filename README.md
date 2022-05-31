@@ -249,7 +249,15 @@ The _cellForRowAt_ method should now look like this:
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
     let message = items[indexPath.row] as! SKTMessage
-    let text = message.role == "appMaker" ? "\(message.name!) says \(message.text!)" : message.text!
+    
+    var text = message.text
+              
+    if message.role == "appMaker" && (message.displayName != nil) {
+        text = "\(message.displayName!) says: \(message.text!)"
+    } else if message.role == "appMaker" && (message.displayName == nil){
+        text = "Business says: \(message.text!)"
+    }
+    
     cell.textLabel!.text = text
     return cell
 }
