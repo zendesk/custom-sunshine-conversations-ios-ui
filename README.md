@@ -288,7 +288,6 @@ class ViewController: UIViewController, UITableViewDataSource, SKTConversationDe
         if let allMessages = Smooch.conversation()?.messages {
             self.items = allMessages
         }
-
         conversationHistory.reloadData()
     }
 }
@@ -315,5 +314,5 @@ The complete code for this guide is included in this repository. To run the code
 - clone the repo
 - run `pod install`
 - open _custom-ui-ios.xcworkspace_ in Xcode
-- replace _<your_app_id>_ in _AppDelegate.swift_ with your Smooch app ID
+- replace _<YOUR_INTEGRATION_ID>_ in _AppDelegate.swift_ with your Smooch iOS integration id
 - and build and run the project in the device emulator.

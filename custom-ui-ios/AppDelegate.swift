@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Smooch.initWith(SKTSettings(appId: "<your_app_id>"))
+        Smooch.initWith(SKTSettings(integrationId: "YOUR_INTEGRATION_ID"))
         return true
     }
 
