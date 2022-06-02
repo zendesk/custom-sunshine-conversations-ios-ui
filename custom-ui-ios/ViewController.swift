@@ -43,18 +43,9 @@ class ViewController: UIViewController, UITableViewDataSource, SKTConversationDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        
         let message = items[indexPath.row] as! SKTMessage
-        
-        var text = message.text
-        
-        // message display name is an optional parameter and can sometimes be empty if not set while sending the message via API: https://docs.smooch.io/rest/#tag/Messages     
-        if message.role == "appMaker" && (message.displayName != nil) {
-            text = "\(message.displayName!) says: \(message.text!)"
-        } else if message.role == "appMaker" && (message.displayName == nil){
-            text = "Business says: \(message.text!)"
-        }
-
+        let displayName: String = message.displayName ?? "Business"
+        let text = message.role == "appMaker" ? "\(displayName) says \(message.text!)" : message.text!
         cell.textLabel!.text = text
         return cell
     }
