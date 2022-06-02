@@ -182,7 +182,7 @@ import Smooch
 And, in _didFinishLaunchingWithOptions_ in _AppDelegate.swift_, add a line to initialize Smooch replacing `"<YOUR_INTEGRATION_ID>"` with your Smooch iOS integration ID:
 
 ```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     Smooch.initWith(SKTSettings(integrationId: "<YOUR_INTEGRATION_ID>"))
     return true
 }
@@ -230,15 +230,13 @@ Next, in our _cellForRowAt_ method, we want to set the value of the cell to the 
 Replace the code that sets the value of the cell to `"Item"` with this:
 
 ```swift
+let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
+        
 let message = items[indexPath.row] as! SKTMessage
 
-var text = message.text
-              
-if message.role == "appMaker" && (message.displayName != nil) {
-    text = "\(message.displayName!) says: \(message.text!)"
-} else if message.role == "appMaker" && (message.displayName == nil){
-    text = "Business says: \(message.text!)"
-}
+let displayName: String = message.displayName ?? "Business"
+
+let text = message.role == "appMaker" ? "\(displayName) says \(message.text!)" : message.text!
 
 cell.textLabel!.text = text
 ```
@@ -248,16 +246,13 @@ The _cellForRowAt_ method should now look like this:
 ```swift
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
+        
     let message = items[indexPath.row] as! SKTMessage
-    
-    var text = message.text
-              
-    if message.role == "appMaker" && (message.displayName != nil) {
-        text = "\(message.displayName!) says: \(message.text!)"
-    } else if message.role == "appMaker" && (message.displayName == nil){
-        text = "Business says: \(message.text!)"
-    }
-    
+
+    let displayName: String = message.displayName ?? "Business"
+
+    let text = message.role == "appMaker" ? "\(displayName) says \(message.text!)" : message.text!
+
     cell.textLabel!.text = text
     return cell
 }
